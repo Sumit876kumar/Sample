@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dental Square | Advanced Dental Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* --- 1. THEME VARIABLES (Same as before) --- */
+:root {
+    --bg-body: #ffffff;
+    --bg-soft: #fff0f5;       /* Very light pink bg */
+    --bg-surface: #ffffff;
+    
+    --primary: #ff69b4;       /* Hot Pink */
+    --primary-dark: #e05297;
+    --secondary: #ffd700;     /* Gold Yellow */
+    --secondary-light: #fff8e1;
+    
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    
+    --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 30px rgba(255, 105, 180, 0.15);
+    --radius: 20px;
+    --container: 1150px;
+}
+
+/* --- 2. BASE STYLES --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; transition: 0.3s ease; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+section { padding: 80px 0; }
+
+.container { 
+    max-width: var(--container); 
+    margin: 0 auto; 
+    padding: 0 24px; 
+}
+
+/* Section Headings - Centered & Modern */
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    position: relative;
+    display: inline-block;
+}
+.section-header h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+.section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+.btn-primary { 
+    background: var(--primary);
+    color: #fff; 
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+}
+.btn-primary:hover { 
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* --- 3. HEADER (Clean White) --- */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+.brand { 
+    font-size: 1.5rem; 
+    font-weight: 800; 
+    color: var(--text-main); 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.brand span { color: var(--primary); }
+
+.nav-links { display: flex; gap: 35px; align-items: center; }
+.nav-links a { 
+    color: var(--text-main); 
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-toggle { display: none; background:none; border:none; font-size:1.5rem; cursor:pointer;}
+
+/* --- 4. HERO SECTION (Split Layout) --- */
+.hero {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #fff 0%, var(--bg-soft) 100%);
+    position: relative;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50-50 */
+    align-items: center;
+    gap: 60px;
+}
+.hero-content h1 {
+    font-size: 3.8rem;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+.hero-content h1 span {
+    background: linear-gradient(to right, var(--primary), #ff9a9e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    max-width: 90%;
+}
+.hero-image {
+    position: relative;
+}
+.hero-image img {
+    border-radius: var(--radius);
+    box-shadow: 20px 20px 0px var(--secondary-light); /* Offset decorative border */
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+
+/* --- 5. ABOUT STRIP (Floating Grid) --- */
+.about-strip {
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 60px;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: white;
+    padding: 50px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    gap: 40px;
+}
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.stat-icon {
+    width: 60px; height: 60px;
+    background: var(--bg-soft);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+}
+.stat-text h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.stat-text p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; }
+
+/* --- 6. SERVICES (Pattern Grid) --- */
+.services-section { background: #fff; }
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.service-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 40px 30px;
+    border-radius: var(--radius);
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+.service-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-md);
+}
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.service-card h3 { margin-bottom: 10px; font-size: 1.4rem; }
+.service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* --- 7. TEAM (Clean Circles) --- */
+.team-section { background: var(--bg-soft); }
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+.team-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: 0.3s;
+}
+.team-card:hover { transform: translateY(-5px); }
+.team-img-wrapper {
+    width: 150px; height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--secondary-light);
+}
+.team-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.team-card h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 5px; }
+.team-card span { color: var(--primary); font-size: 0.9rem; font-weight: 600; text-transform: uppercase;}
+
+/* --- 8. CONTACT (NEW LAYOUT: Top Cards, Bottom Map) --- */
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.contact-box {
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+.contact-box-icon {
+    width: 60px; height: 60px;
+    background: var(--secondary-light);
+    color: var(--secondary); /* Darker yellow text */
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+}
+/* Yellow text tweak for visibility */
+.contact-box-icon { color: #d4af37; } 
+
+.contact-box h3 { margin-bottom: 10px; font-size: 1.2rem; }
+.contact-box p { color: var(--text-muted); font-size: 0.95rem; }
+
+.map-section {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+.map-section iframe { width: 100%; height: 100%; border: none; }
+
+/* --- 9. APPOINTMENT FORM (Paper Style) --- */
+.appointment-section { background: var(--bg-soft); }
+.form-wrapper {
+    background: white;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+/* Pink top border for style */
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 6px;
+    background: var(--primary);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    transition: 0.3s;
+}
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    background: #fffafa;
+}
+.full-width { grid-column: span 2; }
+
+/* --- 10. FOOTER --- */
+footer { background: #2d3436; color: white; padding: 70px 0 20px; }
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+.footer-col h4 { 
+    color: var(--secondary); 
+    margin-bottom: 25px; 
+    font-size: 1.2rem;
+}
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a { color: #b2bec3; }
+.footer-col ul li a:hover { color: var(--primary); padding-left: 5px; }
+.footer-bottom { 
+    border-top: 1px solid #444; 
+    padding-top: 20px; 
+    text-align: center; 
+    color: #b2bec3;
+    font-size: 0.9rem;
+}
+
+/* --- WHATSAPP --- */
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; width: 60px; height: 60px;
+    border-radius: 50%; display: grid; place-items: center;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    transition: 0.3s; z-index: 999;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .stats-grid { grid-template-columns: 1fr; text-align: center; }
+    .stat-item { flex-direction: column; }
+    .contact-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: white; flex-direction: column; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .nav-links.active { display: flex; }
+    .nav-toggle { display: block; }
+    .form-grid { grid-template-columns: 1fr; }
+    .full-width { grid-column: span 1; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-wrapper">
+        <a href="#" class="brand">
+            <span>✦</span> Dental Square
+        </a>
+        <button class="nav-toggle" id="navToggle">☰</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#team">Experts</a>
+            <a href="#contact">Contact</a>
+            <a href="#appointment" class="btn btn-primary" style="padding: 10px 25px; font-size: 0.9rem;">Book Now</a>
+        </nav>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <h1>Expert Dental Care<br><span>With a Gentle Touch</span></h1>
+            <p>Your smile is our passion. Experience painless treatments, state-of-the-art technology, and a friendly environment for your whole family.</p>
+            <div style="display:flex; gap:15px; justify-content: flex-start;">
+                <a href="#appointment" class="btn btn-primary">Book Appointment</a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?t=st=1733050000~exp=1733053600~hmac=a45" alt="Dental Care">
+        </div>
+    </div>
+</section>
+
+<div class="container about-strip">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-icon">👨‍⚕️</div>
+            <div class="stat-text">
+                <h3>Expert Team</h3>
+                <p>20+ Years of combined experience in specialized dentistry.</p>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">🛡️</div>
+            <div class="stat-text">
+                <h3>Safety First</h3>
+                <p>Advanced sterilization protocols for your complete safety.</p>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">💎</div>
+            <div class="stat-text">
+                <h3>Affordable</h3>
+                <p>Transparent pricing with no hidden charges.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="services" class="services-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Treatments</h2>
+            <p>Comprehensive dental solutions tailored to your unique needs.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🦷</span>
+                <h3>General Dentistry</h3>
+                <p>Regular checkups, scaling, and fillings to maintain perfect oral hygiene.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">✨</span>
+                <h3>Cosmetic Makeovers</h3>
+                <p>Teeth whitening, veneers, and smile designing for a celebrity look.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🔧</span>
+                <h3>Dental Implants</h3>
+                <p>Permanent solutions for missing teeth using titanium implants.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">👶</span>
+                <h3>Kids Dentistry</h3>
+                <p>Specialized, gentle care to make your child's visit fun and fear-free.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">😬</span>
+                <h3>Orthodontics</h3>
+                <p>Modern braces and clear aligners to fix crooked teeth.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🏥</span>
+                <h3>Root Canal</h3>
+                <p>Advanced rotary endodontics to save your infected teeth painlessly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="team" class="team-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Meet Our Specialists</h2>
+            <p>Skilled professionals dedicated to your smile.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img-wrapper">
+                    <img src="https://img.freepik.com/free-photo/portrait-smiling-handsome-male-doctor-man_171337-5055.jpg" alt="Doctor">
+                </div>
+                <h3>Dr. Anil Kumar</h3>
+                <span>Senior Dentist</span>
+            </div>
+            <div class="team-card">
+                <div class="team-img-wrapper">
+                    <img src="https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg" alt="Doctor">
+                </div>
+                <h3>Dr. Aditi Sharma</h3>
+                <span>Orthodontist</span>
+            </div>
+            <div class="team-card">
+                <div class="team-img-wrapper">
+                    <img src="https://img.freepik.com/free-photo/doctor-smiling-with-stethoscope_1154-36.jpg" alt="Doctor">
+                </div>
+                <h3>Dr. Rohan Das</h3>
+                <span>Surgeon</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" style="background: white;">
+    <div class="container">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p>We are here to help. Visit us or call us today.</p>
+        </div>
+        
+        <div class="contact-wrapper">
+            <div class="contact-cards">
+                <div class="contact-box">
+                    <div class="contact-box-icon">📍</div>
+                    <h3>Our Location</h3>
+                    <p>123, Main Road, Bistupur,<br>Jamshedpur, Jharkhand</p>
+                </div>
+                <div class="contact-box">
+                    <div class="contact-box-icon">📞</div>
+                    <h3>Phone Number</h3>
+                    <p>+91 99999 99999<br>+91 88888 88888</p>
+                </div>
+                <div class="contact-box">
+                    <div class="contact-box-icon">⏰</div>
+                    <h3>Opening Hours</h3>
+                    <p>Mon - Sat: 10AM - 8PM<br>Sun: By Appointment</p>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.016579822365!2d86.19607531496355!3d22.801598985065415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e317183e4a2d%3A0x7d6c6e7687877e8a!2sBistupur%2C%20Jamshedpur%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1625561111111!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="appointment" class="appointment-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Book An Appointment</h2>
+            <p>Fill the form below and we will get back to you shortly.</p>
+        </div>
+        <div class="form-wrapper">
+            <form id="appointmentForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+91 99999 99999" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Date</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Treatment Type</label>
+                        <select>
+                            <option>Consultation</option>
+                            <option>Whitening</option>
+                            <option>Implants</option>
+                            <option>Braces</option>
+                            <option>Pain/Emergency</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Message (Optional)</label>
+                        <textarea rows="4" placeholder="Describe your issue..."></textarea>
+                    </div>
+                    <div class="form-group full-width" style="text-align: center; margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Booking</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h4>Dental Square</h4>
+            <p>Providing world-class dental care with a personal touch in the heart of Jamshedpur.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Treatments</a></li>
+                <li><a href="#appointment">Book Now</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Dental Square. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Request Sent! We will call you soon.');
+    });
+</script>
+
+</body>
+</html>
